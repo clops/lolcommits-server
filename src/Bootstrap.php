@@ -5,10 +5,15 @@
      * This is the main configuration dispatcher for the whole site
      */
 
+	use Silex\Application;
     use Silex\Provider\HttpCacheServiceProvider;
     use Silex\Provider\MonologServiceProvider;
     use Silex\Provider\TwigServiceProvider;
     use SilexAssetic\AsseticServiceProvider;
+	use Symfony\Component\HttpFoundation\Request;
+	use Symfony\Component\HttpFoundation\Response;
+
+	define("ROOT_PATH", __DIR__ . "/..");
 
     ####### SETUP ########################################################################################
     #
@@ -31,6 +36,12 @@
         'monolog.name'    => 'app',
         'monolog.level'   => 300 // = Logger::WARNING
     ));
+
+	$app->error(function (\Exception $e, $code) use ($app) {
+		$app['monolog']->addError($e->getMessage());
+		$app['monolog']->addError($e->getTraceAsString());
+		return new JsonResponse(array("statusCode" => $code, "message" => $e->getMessage(), "stacktrace" => $e->getTraceAsString()));
+	});
 
     # ASSETIC (from https://github.com/lyrixx/Silex-Kitchen-Edition/blob/master/src/app.php ) -->
     if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {
@@ -71,5 +82,24 @@
         );
 
     }
+
+	## Some Default Headers ###
+	//handling CORS preflight request
+	$app->before(function (Request $request) {
+		if ($request->getMethod() === "OPTIONS") {
+			$response = new Response();
+			$response->headers->set("Access-Control-Allow-Origin","*");
+			$response->headers->set("Access-Control-Allow-Methods","GET,POST,OPTIONS");
+			$response->headers->set("Access-Control-Allow-Headers","Content-Type");
+			$response->setStatusCode(200);
+			return $response->send();
+		}
+	}, Application::EARLY_EVENT);
+
+	//handling CORS respons with right headers
+	$app->after(function (Request $request, Response $response) {
+		$response->headers->set("Access-Control-Allow-Origin","*");
+		$response->headers->set("Access-Control-Allow-Methods","GET,POST,OPTIONS");
+	});
 
     return $app;
