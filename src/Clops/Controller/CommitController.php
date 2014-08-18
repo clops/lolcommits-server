@@ -28,7 +28,7 @@ namespace Clops\Controller;
         public function addAction(Request $request, Application $app)
         {
 	        //check if the request has all the desired data
-			if(!$request->request->get('file')){
+			if(!$request->files->has('file') ){
 				return $this->error('No file set');
 			}
 
@@ -38,6 +38,10 @@ namespace Clops\Controller;
 
 	        //@todo check if there is a key set and it matches the one configured here
 
+	        //init vars
+	        $directory = null;
+	        $fileName  = null;
+
 	        //save image to local-storage
 	        try{
 		        $directory = $request->request->get('repo').'/'.date('Y').'/'.date('m').'/';
@@ -45,8 +49,9 @@ namespace Clops\Controller;
 					mkdir(ROOT_PATH."/web/commits/".$directory, 0777, true);
 		        }
 
+		        $file      = $request->files->get('file');
 		        $fileName  = uniqid().'.jpg';
-				file_put_contents(ROOT_PATH."/web/commits/".$directory.$fileName, $request->request->get('file'));
+		        move_uploaded_file($file['tmp_name'], ROOT_PATH."/web/commits/".$directory.$fileName);
 	        }catch(Exception $e){
 		        $this->error( $e->getMessage() );
 	        }
