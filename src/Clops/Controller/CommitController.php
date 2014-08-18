@@ -8,6 +8,7 @@ namespace Clops\Controller;
     use Symfony\Component\Config\Definition\Exception\Exception;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\JsonResponse;
+    use Symfony\Component\HttpFoundation\File\UploadedFile;
 
     /**
      * Class PageController
@@ -49,9 +50,10 @@ namespace Clops\Controller;
 					mkdir(ROOT_PATH."/web/commits/".$directory, 0777, true);
 		        }
 
+		        /** @var UploadedFile $file */
 		        $file      = $request->files->get('file');
 		        $fileName  = uniqid().'.jpg';
-		        move_uploaded_file($file['tmp_name'], ROOT_PATH."/web/commits/".$directory.$fileName);
+		        move_uploaded_file($file->getRealPath(), ROOT_PATH."/web/commits/".$directory.$fileName);
 	        }catch(Exception $e){
 		        $this->error( $e->getMessage() );
 	        }
