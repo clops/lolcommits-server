@@ -13,6 +13,8 @@
     $app->get('/', 'Clops\Controller\PageController::indexAction');
     $app->get('/index.html', 'Clops\Controller\PageController::indexAction');
 
+	$app->post('/', 'Clops\Controller\CommitController::addAction');
+
     ## Error Handlers ##############################################################
     #
     $app->error(function (\Exception $e, $code) use ($app) {
