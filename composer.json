@@ -1,0 +1,39 @@
+{
+    "name"        : "clops/silex-template",
+    "type"        : "library",
+    "description" : "Template Project to start your Silex Website",
+    "keywords"    : ["framework","h5bp","silex","website"],
+    "homepage"    : "https://github.com/clops/silex-template",
+    "license"     : "MIT",
+    "authors"     : [
+        {
+            "name"  : "Alexey Kulikov aka Clops",
+            "email" : "me@clops.at"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.2",
+        "silex/silex": "~1.1",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "monolog/monolog": ">=1.0.0",
+        "symfony/config": "~2.3",
+        "symfony/console": "~2.3",
+        "symfony/finder": "~2.2",
+        "symfony/browser-kit": ">=2.3,<2.4-dev",
+        "symfony/css-selector": "~2.4",
+
+        "leafo/lessphp"         : "~0.4.0",
+        "kriswallsmith/assetic" : "~1.1",
+        "mheap/silex-assetic"   : "~1.0"
+    },
+
+    "scripts": {
+        "post-install-cmd": "Clops\\Composer\\Script::install",
+        "post-update-cmd": "Clops\\Composer\\Script::install"
+    },
+
+    "autoload": {
+        "psr-0": { "Clops": "src" }
+    }
+}
