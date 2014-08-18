@@ -47,7 +47,7 @@ namespace Clops\Controller;
 	        try{
 		        $directory = $request->request->get('repo').'/'.date('Y').'/'.date('m').'/';
 		        if(!file_exists(ROOT_PATH."/web/commits/".$directory)){
-					mkdir(ROOT_PATH."/web/commits/".$directory, 0777, true);
+					mkdir(ROOT_PATH."/web/commits/".$directory, 0755, true);
 		        }
 
 		        /** @var UploadedFile $file */
