@@ -36,6 +36,8 @@ namespace Clops\Controller;
 		        return $this->error('No repo set');
 	        }
 
+	        //@todo check if there is a key set and it matches the one configured here
+
 	        //save image to local-storage
 	        try{
 		        $directory = $request->request->get('repo').'/'.date('Y').'/'.date('m').'/';
