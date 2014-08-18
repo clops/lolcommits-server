@@ -1,9 +1,9 @@
 {
-    "name"        : "clops/silex-template",
+    "name"        : "clops/lolcommits-server",
     "type"        : "library",
     "description" : "Template Project to start your Silex Website",
     "keywords"    : ["framework","h5bp","silex","website"],
-    "homepage"    : "https://github.com/clops/silex-template",
+    "homepage"    : "https://github.com/clops/lolcommits-server",
     "license"     : "MIT",
     "authors"     : [
         {
