@@ -33,6 +33,7 @@ namespace Clops\Controller;
 	        foreach($files as &$file){
 		        $file = str_replace(ROOT_PATH.'/web/', '', $file);
 	        }
+	        $files = array_reverse($files);
 
             return $app['twig']->render('index.html.twig', array('images' => $files));
         }
