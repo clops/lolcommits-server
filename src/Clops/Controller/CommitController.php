@@ -45,19 +45,25 @@ namespace Clops\Controller;
 
 	        //save image to local-storage
 	        try{
+		        $path      = ROOT_PATH."/web/commits/";
 		        $directory = $request->request->get('repo').'/'.date('Y').'/'.date('m').'/';
-		        if(!file_exists(ROOT_PATH."/web/commits/".$directory)){
-					mkdir(ROOT_PATH."/web/commits/".$directory, 0755, true);
+		        if(!file_exists($path.$directory)){
+					mkdir($path.$directory, 0755, true);
 		        }
 
 		        /** @var UploadedFile $file */
 		        $file      = $request->files->get('file');
-		        $fileName  = uniqid().'.jpg';
-
-		        move_uploaded_file($file->getRealPath(), ROOT_PATH."/web/commits/".$directory.$fileName);
+		        $fileName  = $file->getClientOriginalName();
+				$file->move($path.$directory, $file->getClientOriginalName());
+		        //move_uploaded_file($file->getRealPath(), ROOT_PATH."/web/commits/".$directory.$fileName);
 	        }catch(Exception $e){
 		        $this->error( $e->getMessage() );
 	        }
+
+	        $ret = array(
+		        'status' => 'ok',
+		        'file'   => 'commits/'.$directory.$fileName
+	        );
 
 	        //send OK reply
 			return new JsonResponse(
