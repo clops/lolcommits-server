@@ -19,6 +19,7 @@
     #
     $app->error(function (\Exception $e, $code) use ($app) {
         switch ($code) {
+	        case 503:
             case 404:
                 $message = $app['twig']->render('error404.html.twig');
                 break;
