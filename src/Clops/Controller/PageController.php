@@ -25,7 +25,16 @@ namespace Clops\Controller;
          */
         public function indexAction(Request $request, Application $app)
         {
-            return $app['twig']->render('index.html.twig', array());
+
+	        //indeed, this is currently rather dumb
+	        //plan is to load only the last X lol-commits and add waypoint
+	        //navigation for a correctly working pager...
+	        $files  = glob(ROOT_PATH.'/web/commits/*/*/*.jpg');
+	        foreach($files as &$file){
+		        $file = str_replace(ROOT_PATH.'/web/', '', $file);
+	        }
+
+            return $app['twig']->render('index.html.twig', array('images' => $files));
         }
 
     }

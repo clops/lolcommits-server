@@ -5,8 +5,9 @@ LoL Commits Server - by Clops
 {% endblock %}
 
 {% block content %}
-<h1>LOL-Commits Server</h1>
-<p>
-    We are the latest LoLs...
-</p>
+<ul id="lols">
+    {% for image in images %}
+    <li><img src="{{ image }}" /></li>
+    {% endfor %}
+</ul>
 {% endblock %}

@@ -53,6 +53,7 @@ namespace Clops\Controller;
 		        /** @var UploadedFile $file */
 		        $file      = $request->files->get('file');
 		        $fileName  = uniqid().'.jpg';
+
 		        move_uploaded_file($file->getRealPath(), ROOT_PATH."/web/commits/".$directory.$fileName);
 	        }catch(Exception $e){
 		        $this->error( $e->getMessage() );

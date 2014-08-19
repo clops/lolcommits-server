@@ -97,7 +97,19 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+#lols{
+    margin: 0;
+    padding: 0;
+}
 
+#lols li{
+    list-style: none;
+    float: left;
+}
+
+#lols li img{
+    width: 150px;
+}
 
 
 
