@@ -9,6 +9,7 @@
     use Silex\Provider\HttpCacheServiceProvider;
     use Silex\Provider\MonologServiceProvider;
     use Silex\Provider\TwigServiceProvider;
+	use Silex\Provider\DoctrineServiceProvider;
     use SilexAssetic\AsseticServiceProvider;
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\Response;
@@ -41,6 +42,14 @@
         'monolog.name'    => 'app',
         'monolog.level'   => 300 // = Logger::WARNING
     ));
+
+	# DOCTRINE -->
+	$app->register(new DoctrineServiceProvider(), array(
+		'db.options' => array(
+			'driver'   => 'pdo_sqlite',
+			'path'     => __DIR__.'/../resources/db/app.db',
+		),
+	));
 
     # ASSETIC (from https://github.com/lyrixx/Silex-Kitchen-Edition/blob/master/src/app.php ) -->
     if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {

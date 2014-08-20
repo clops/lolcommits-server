@@ -59,4 +59,23 @@
 
 		});
 
+	$console
+		->register('db:create')
+		->setDescription('Creates Database Tables')
+		->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
+			$app['db']->exec("CREATE TABLE IF NOT EXISTS commits(
+				sha     CHAR(50) PRIMARY KEY NOT NULL,
+				message TEXT,
+				repo    CHAR(50),
+				image   CHAR(255),
+				created DATETIME DEFAULT CURRENT_TIMESTAMP
+			)");
+
+			$app['db']->exec("CREATE INDEX IF NOT EXISTS commits_created ON commits(created DESC)");
+
+			$output->writeln("Table commits <info>created</info>");
+			$output->writeln("Index commits_created <info>created</info>");
+			$output->writeln(sprintf("%s <info>success</info>", 'db:create'));
+		});
+
     return $console;
