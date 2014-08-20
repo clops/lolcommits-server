@@ -3,8 +3,10 @@
 composer.lock
 composer.phar
 vendor
+resources/config/settings.yml
 resources/cache/twig/
 resources/cache/assetic/
 resources/log/*
 web/assets/css/
 web/assets/js/
+atlassian-ide-plugin.xml

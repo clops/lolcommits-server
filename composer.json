@@ -1,14 +1,14 @@
 {
-    "name"        : "clops/lolcommits-server",
-    "type"        : "library",
-    "description" : "Template Project to start your Silex Website",
-    "keywords"    : ["framework","h5bp","silex","website"],
-    "homepage"    : "https://github.com/clops/lolcommits-server",
-    "license"     : "MIT",
-    "authors"     : [
+    "name": "clops/lolcommits-server",
+    "type": "library",
+    "description": "Template Project to start your Silex Website",
+    "keywords": ["framework", "h5bp", "silex", "website"],
+    "homepage": "https://github.com/clops/lolcommits-server",
+    "license": "MIT",
+    "authors": [
         {
-            "name"  : "Alexey Kulikov aka Clops",
-            "email" : "me@clops.at"
+            "name": "Alexey Kulikov aka Clops",
+            "email": "me@clops.at"
         }
     ],
 
@@ -22,18 +22,23 @@
         "symfony/finder": "~2.2",
         "symfony/browser-kit": ">=2.3,<2.4-dev",
         "symfony/css-selector": "~2.4",
+        "symfony/yaml": "~2.1",
 
-        "leafo/lessphp"         : "~0.4.0",
-        "kriswallsmith/assetic" : "~1.1",
-        "mheap/silex-assetic"   : "~1.0"
+        "leafo/lessphp": "~0.4.0",
+        "kriswallsmith/assetic": "~1.1",
+        "mheap/silex-assetic": "~1.0",
+
+        "deralex/yaml-config-service-provider": "1.0.x-dev"
     },
 
     "scripts": {
         "post-install-cmd": "Clops\\Composer\\Script::install",
-        "post-update-cmd": "Clops\\Composer\\Script::install"
+        "post-update-cmd": "Clops\\Composer\\Script::update"
     },
 
     "autoload": {
-        "psr-0": { "Clops": "src" }
+        "psr-0": {
+            "Clops": "src"
+        }
     }
 }

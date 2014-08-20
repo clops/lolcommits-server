@@ -17,6 +17,11 @@
 
     ####### SETUP ########################################################################################
     #
+	# CONFIG FILES -->
+	if(file_exists(__DIR__ . '/../resources/config/settings.yml')){ //important!!! composer.phar will create the file on install
+		$app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/../resources/config/settings.yml'));
+	}
+
     # TWIG -->
     /** @var Silex\Application $app * */
     $app->register(new TwigServiceProvider(), array(
@@ -36,12 +41,6 @@
         'monolog.name'    => 'app',
         'monolog.level'   => 300 // = Logger::WARNING
     ));
-
-	$app->error(function (\Exception $e, $code) use ($app) {
-		$app['monolog']->addError($e->getMessage());
-		$app['monolog']->addError($e->getTraceAsString());
-		return new JsonResponse(array("statusCode" => $code, "message" => $e->getMessage(), "stacktrace" => $e->getTraceAsString()));
-	});
 
     # ASSETIC (from https://github.com/lyrixx/Silex-Kitchen-Edition/blob/master/src/app.php ) -->
     if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {

@@ -37,7 +37,15 @@ namespace Clops\Controller;
 		        return $this->error('No repo set');
 	        }
 
-	        //@todo check if there is a key set and it matches the one configured here
+	        if(isset($app['config']['main']['key']) && !empty($app['config']['main']['key'])){
+		        if(!$request->request->get('key')){
+			        return $this->error('No key set');
+		        }
+
+		        if($app['config']['main']['key'] != $request->request->get('key')){
+			        return $this->error('Incorrect key provided, ciao!');
+		        }
+	        }
 
 	        //init vars
 	        $directory = null;

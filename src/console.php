@@ -44,4 +44,19 @@
             });
     }
 
+	$console
+		->register('settings:create')
+		->setDescription('Creates a default settings.yml file under resources/config/')
+		->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
+			//check if a settings file perhaps already exists, if so --> nothing to do
+			$filesystem = new Filesystem();
+			if($filesystem->exists(ROOT_PATH.'/resources/config/settings.yml')){
+				$output->writeln('<error>resources/config/settings.yml already exists, no need to create</error>');
+			}else{
+				$filesystem->copy(ROOT_PATH.'/resources/config/settings.default.yml', ROOT_PATH.'/resources/config/settings.yml');
+				$output->writeln(sprintf("%s <info>success</info>", 'settings:create'));
+			}
+
+		});
+
     return $console;
