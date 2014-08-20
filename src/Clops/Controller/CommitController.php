@@ -42,19 +42,21 @@ namespace Clops\Controller;
 			        return $this->error('No key set');
 		        }
 
-		        if($app['config']['main']['key'] != $request->request->get('key')){
+		        //the first check for a string "false" is actuall a bug in the lolcommits plugin, take care!
+		        if($request->request->get('key') != 'false' && $app['config']['main']['key'] != $request->request->get('key')){
 			        return $this->error('Incorrect key provided, ciao!');
 		        }
 	        }
 
 	        //init vars
-	        $directory = null;
-	        $fileName  = null;
+	        $directory  = null;
+	        $fileName   = null;
+	        $repository = ($request->request->get('repo')=='/'?'_unknown_':$request->request->get('repo'));
 
 	        //save image to local-storage
 	        try{
 		        $path      = ROOT_PATH."/web/commits/";
-		        $directory = $request->request->get('repo').'/'.date('Y').'/'.date('m').'/';
+		        $directory = $repository.'/'.date('Y').'/'.date('m').'/';
 		        if(!file_exists($path.$directory)){
 					mkdir($path.$directory, 0755, true);
 		        }
@@ -67,11 +69,6 @@ namespace Clops\Controller;
 	        }catch(Exception $e){
 		        $this->error( $e->getMessage() );
 	        }
-
-	        $ret = array(
-		        'status' => 'ok',
-		        'file'   => 'commits/'.$directory.$fileName
-	        );
 
 	        //send OK reply
 			return new JsonResponse(
@@ -96,7 +93,8 @@ namespace Clops\Controller;
 			    )
 		    );
 
-		    $response->setStatusCode( 500 ); //internal server error (although it might be something else?)
+		    //lolcommits process does not like status 500
+		    //$response->setStatusCode( 500 ); //internal server error (although it might be something else?)
 		    return $response;
 	    }
 
