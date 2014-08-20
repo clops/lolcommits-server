@@ -6,8 +6,8 @@ LoL Commits Server - by Clops
 
 {% block content %}
 <ul id="lols">
-    {% for image in images %}
-    <li><img src="{{ image }}" /></li>
+    {% for commit in commits %}
+    <li><img src="commits/{{ commit.image }}" title="{{ commit.sha }} {{ commit.message }} {{ commit.created }}" /></li>
     {% endfor %}
 </ul>
 {% endblock %}

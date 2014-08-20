@@ -5,9 +5,11 @@ composer.phar
 vendor
 resources/config/settings.yml
 resources/app.db
+resources/db/app.db
 resources/cache/twig/
 resources/cache/assetic/
 resources/log/*
 web/assets/css/
 web/assets/js/
+web/commits/*
 atlassian-ide-plugin.xml
