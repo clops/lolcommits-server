@@ -3,13 +3,15 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Alexey Kulikov aka clops -- One Man Show
 
 # THANKS
 
-    <name>
+    LolCommits developers
+    Silex developers
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
     Normalize.css, jQuery, Modernizr
+    SILEX
