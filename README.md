@@ -8,10 +8,10 @@ A simple web backend/server for receiving and displaying lol-commits images on a
   * Accepts POST requests from lolcommits and stores image files on the server
   * Provides a front-end interface to view the images in reverse chronological order (real fun begins when there are several people posting to the same server)
   * Supports lolcommit KEYs for authentication
+  * Stores metadata in a local SQL database
 
 ## Stuff to Come ##
 
-  * Store metadata in a local SQL database for easier retrieval
   * Instagrmam-like frontend with waypoint navigation
 
 ## Installation ##
