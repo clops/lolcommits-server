@@ -430,7 +430,7 @@ section h3.section-subheading {
 
 .timeline>li.timeline-inverted>.timeline-panel {
     float: right;
-    padding: 0 20px 0 100px;
+    padding: 20px 20px 0 100px;
     text-align: left;
 }
 
@@ -479,7 +479,7 @@ section h3.section-subheading {
     .timeline>li .timeline-panel {
         float: left;
         width: 41%;
-        padding: 0 20px 20px 30px;
+        padding: 20px 20px 20px 30px;
         text-align: right;
     }
 
@@ -498,7 +498,7 @@ section h3.section-subheading {
 
     .timeline>li.timeline-inverted>.timeline-panel {
         float: right;
-        padding: 0 30px 20px 20px;
+        padding: 20px 30px 20px 20px;
         text-align: left;
     }
 }
@@ -509,7 +509,7 @@ section h3.section-subheading {
     }
 
     .timeline>li .timeline-panel {
-        padding: 0 20px 20px;
+        padding: 20px 20px 20px;
     }
 
     .timeline>li .timeline-image {
@@ -525,7 +525,7 @@ section h3.section-subheading {
     }
 
     .timeline>li.timeline-inverted>.timeline-panel {
-        padding: 0 20px 20px;
+        padding: 20px 20px 20px;
     }
 }
 
@@ -535,7 +535,7 @@ section h3.section-subheading {
     }
 
     .timeline>li .timeline-panel {
-        padding: 0 20px 20px 100px;
+        padding: 20px 20px 20px 100px;
     }
 
     .timeline>li .timeline-image {
@@ -549,7 +549,7 @@ section h3.section-subheading {
     }
 
     .timeline>li.timeline-inverted>.timeline-panel {
-        padding: 0 100px 20px 20px;
+        padding: 20px 100px 20px 20px;
     }
 }
 
