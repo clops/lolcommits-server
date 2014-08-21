@@ -10,6 +10,7 @@
     use Silex\Provider\MonologServiceProvider;
     use Silex\Provider\TwigServiceProvider;
 	use Silex\Provider\DoctrineServiceProvider;
+	use Neutron\Silex\Provider\ImagineServiceProvider;
     use SilexAssetic\AsseticServiceProvider;
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\Response;
@@ -50,6 +51,9 @@
 			'path'     => __DIR__.'/../resources/db/app.db',
 		),
 	));
+
+	# IMAGINE -->
+	$app->register(new ImagineServiceProvider());
 
     # ASSETIC (from https://github.com/lyrixx/Silex-Kitchen-Edition/blob/master/src/app.php ) -->
     if (isset($app['assetic.enabled']) && $app['assetic.enabled']) {

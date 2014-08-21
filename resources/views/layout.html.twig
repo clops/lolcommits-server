@@ -17,6 +17,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 	<link href="/assets/css/styles.css" type="text/css" rel="stylesheet">
 
     <!-- start custom CSS -->
@@ -30,12 +31,20 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- start Content -->
-    {% block content %}{% endblock %}
-    <!-- end Content -->
+    <div class="container">
+
+        <div class="row marketing">
+            <!-- start Content -->
+            {% block content %}{% endblock %}
+            <!-- end Content -->
+        </div>
+
+    </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/assets/vendorjs/jquery-1.10.2.min.js"><\/script>')</script>
+<script srt="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <script src="/assets/js/scripts.js"></script>
 
 <!-- start custom Java Scripts -->

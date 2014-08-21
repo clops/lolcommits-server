@@ -5,9 +5,31 @@ LoL Commits Server - by Clops
 {% endblock %}
 
 {% block content %}
-<ul id="lols">
-    {% for commit in commits %}
-    <li><img src="commits/{{ commit.image }}" title="{{ commit.sha }} {{ commit.message }} {{ commit.created }}" /></li>
-    {% endfor %}
-</ul>
+    <ul class="timeline">
+        {% for commit in commits %}
+        <li class="{{ cycle(['timeline-not-inverted', 'timeline-inverted'], loop.index0) }}">
+            <div class="timeline-image">
+                <img class="img-circle img-responsive" src="commits/{{ commit.thumb }}" alt="">
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4>{{ commit.created }}</h4>
+                    <h4 class="subheading">{{ commit.repo }} / {{ commit.sha }}</h4>
+                </div>
+                <div class="timeline-body">
+                    <p class="text-muted">{{ commit.message }}</p>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+
+        <li class="timeline-inverted">
+            <div class="timeline-image">
+                <h4>Powered
+                    <br>by
+                    <br>LolServer</h4>
+            </div>
+        </li>
+    </ul>
+
 {% endblock %}

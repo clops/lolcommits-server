@@ -9,6 +9,8 @@
 	use Symfony\Component\HttpFoundation\File\UploadedFile;
 	use Symfony\Component\HttpFoundation\JsonResponse;
 	use Symfony\Component\HttpFoundation\Request;
+	use Imagine\Image\Box;
+	use Imagine\Image\Point;
 
 	/**
 	 * Class PageController
@@ -66,13 +68,25 @@
 				/** @var UploadedFile $file */
 				$file     = $request->files->get('file');
 				$fileName = $file->getClientOriginalName();
-				$file->move($path . $directory, $file->getClientOriginalName());
+				$file->move($path . $directory, $fileName);
+
+				//simple changes
+				$pathToFile  = $directory . $fileName;
+				$pathToThumb = $directory . 'thumb_' . $fileName;
+
+				//now also create a thumbnail from the image
+				$app['imagine']
+					->open($path . $pathToFile)
+					->resize(new Box(268, 200))
+					->crop(new Point(34, 0), new Box(200, 200))
+					->save($path . $pathToThumb);
 
 				//last but not least --> create database entry
 		        $app['db']->insert('commits', array(
 			        'sha'     => $sha,
 			        'message' => $message,
-			        'image'   => $directory . $fileName,
+			        'image'   => $pathToFile,
+			        'thumb'   => $pathToThumb,
 			        'repo'    => $repository
 		        ));
 	        } catch (Exception $e) {

@@ -68,7 +68,8 @@
 				message TEXT,
 				repo    CHAR(50),
 				image   CHAR(255),
-				created DATETIME DEFAULT CURRENT_TIMESTAMP
+				thumb   CHAR(255),
+				created DATETIME DEFAULT (datetime('now','localtime'))
 			)");
 
 			$app['db']->exec("CREATE INDEX IF NOT EXISTS commits_created ON commits(created DESC)");
