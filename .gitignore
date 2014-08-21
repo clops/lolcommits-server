@@ -8,7 +8,7 @@ resources/app.db
 resources/db/app.db
 resources/cache/twig/
 resources/cache/assetic/
-resources/log/*
+resources/log/app.log
 web/assets/css/
 web/assets/js/
 web/commits/*
