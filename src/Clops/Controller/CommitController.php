@@ -1,5 +1,5 @@
 <?php
-	
+
 	/**
 	 * @author Alexey Kulikov aka Clops <me@clops.at>
 	 */
