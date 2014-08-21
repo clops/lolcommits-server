@@ -84,7 +84,7 @@
 
 				//last but not least --> create database entry
 		        $app['db']->insert('commits', array(
-			        'sha'     => $sha,
+			        'sha'     => $sha, //this is the primary key, sending the same commit over WILL result in an exception :) 
 			        'message' => $message,
 			        'image'   => $pathToFile,
 			        'thumb'   => $pathToThumb,
