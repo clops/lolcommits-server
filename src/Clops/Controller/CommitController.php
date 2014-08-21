@@ -45,7 +45,8 @@
 					return $this->error('No key set');
 				}
 
-				//the first check for a string "false" is actuall a bug in the lolcommits plugin, take care!
+				//the first check for a string "false" is actually a bug in the lolcommits plugin, take care!
+				// @see https://github.com/mroth/lolcommits/issues/223
 				if ($request->request->get('key') != 'false' && $app['config']['main']['key'] != $request->request->get('key')) {
 					return $this->error('Incorrect key provided, ciao!');
 				}
@@ -84,7 +85,7 @@
 
 				//last but not least --> create database entry
 		        $app['db']->insert('commits', array(
-			        'sha'     => $sha, //this is the primary key, sending the same commit over WILL result in an exception :) 
+			        'sha'     => $sha, //this is the primary key, sending the same commit over WILL result in an exception :)
 			        'message' => $message,
 			        'image'   => $pathToFile,
 			        'thumb'   => $pathToThumb,
