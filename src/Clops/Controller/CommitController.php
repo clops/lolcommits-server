@@ -84,7 +84,7 @@
 					->save($path . $pathToThumb);
 
 				//last but not least --> create database entry
-				if(!$record = $app['db']->getAssoc("SELECT * FROM commits WHERE sha = ?", array( 'sha' => (string)$sha ))){
+				if(!$record = $app['db']->fetchAssoc("SELECT * FROM commits WHERE sha = ?", array( 'sha' => (string)$sha ))){
 			        $app['db']->insert('commits', array(
 				        'sha'     => $sha, //this is the primary key, sending the same commit over WILL result in an exception :)
 				        'message' => $message,
