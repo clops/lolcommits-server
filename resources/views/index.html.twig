@@ -4,32 +4,66 @@
 LoL Commits Server - by Clops
 {% endblock %}
 
+{% block stylesheets %}
+<style>
+    .infinite-item{
+
+    }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+<script LANGUAGE="JavaScript" type="text/javascript">
+
+    $( document ).ready(function() {
+        $('.infinite-container').waypoint('infinite', {
+            container: 'auto',
+            items: '.infinite-item',
+            more: '.infinite-more-link',
+            offset: 'bottom-in-view',
+            loadingClass: 'infinite-loading',
+            onBeforePageLoad: $.noop,
+            onAfterPageLoad: $.noop
+        });
+    });
+</script>
+{% endblock %}
+
 {% block content %}
-    <ul class="timeline">
+    <ul class="timeline infinite-container">
+        {% set timestamp = "" %}
         {% for commit in commits %}
-        <li class="{{ cycle(['timeline-not-inverted', 'timeline-inverted'], loop.index0) }}">
-            <div class="timeline-image">
-                <img class="img-circle img-responsive" src="commits/{{ commit.thumb }}" alt="">
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4>{{ commit.created }}</h4>
-                    <h4 class="subheading">{{ commit.repo }} / {{ commit.sha }}</h4>
+            <li class="{{ cycle(['timeline-not-inverted', 'timeline-inverted'], loop.index0) }} infinite-item">
+                <div class="timeline-image">
+                    <img class="img-circle img-responsive" src="commits/{{ commit.thumb }}" alt="">
                 </div>
-                <div class="timeline-body">
-                    <p class="text-muted">{{ commit.message }}</p>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4>{{ commit.created }}</h4>
+                        <h4 class="subheading">{{ commit.repo }} / {{ commit.sha }}</h4>
+                    </div>
+                    <div class="timeline-body">
+                        <p class="text-muted">{{ commit.message }}</p>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
+
+            {% set timestamp = commit.created %}
         {% endfor %}
 
-        <li class="timeline-inverted">
+        {% if total < 1 %}
+        <li class="timeline-inverted infinite-item">
             <div class="timeline-image">
                 <h4>Powered
                     <br>by
                     <br><a href="https://github.com/clops/lolcommits-server" target="_blank" style="color: #fff;">LolServer</a></h4>
             </div>
         </li>
+        {% endif %}
     </ul>
+
+    {% if total %}
+        <a href="/?limit={{ timestamp }}" class="infinite-more-link">More</a>
+    {% endif %}
 
 {% endblock %}
