@@ -30,7 +30,7 @@ namespace Clops\Controller;
 	        if(!$limit){ //current time is the default
 		        $limit = date('Y-m-d H:i:s');
 	        }
-
+sleep(2);
 	        //get the last 10 commits
 	        $commits = $app['db']->fetchAll("SELECT * FROM commits WHERE created < ? ORDER BY created DESC LIMIT 10", array(
 		        (string)$limit

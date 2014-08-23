@@ -6,8 +6,8 @@ LoL Commits Server - by Clops
 
 {% block stylesheets %}
 <style>
-    .infinite-item{
-
+    .infinite-more-link{
+        display: none;
     }
 </style>
 {% endblock %}
@@ -16,21 +16,32 @@ LoL Commits Server - by Clops
 <script LANGUAGE="JavaScript" type="text/javascript">
 
     $( document ).ready(function() {
+        var myLoader = $('#infinite-loading');
+
         $('.infinite-container').waypoint('infinite', {
             container: 'auto',
             items: '.infinite-item',
             more: '.infinite-more-link',
             offset: 'bottom-in-view',
             loadingClass: 'infinite-loading',
-            onBeforePageLoad: $.noop,
-            onAfterPageLoad: $.noop
+            onBeforePageLoad: function(){
+                myLoader.show();
+            },
+            onAfterPageLoad: function(){
+                myLoader.hide();
+
+                //move it to the end of the list
+                myLoader.detach();
+                myLoader.appendTo('#timeline');
+            }
         });
     });
+
 </script>
 {% endblock %}
 
 {% block content %}
-    <ul class="timeline infinite-container">
+    <ul class="timeline infinite-container" id="timeline">
         {% set timestamp = "" %}
         {% for commit in commits %}
             <li class="{{ cycle(['timeline-not-inverted', 'timeline-inverted'], loop.index0) }} infinite-item">
@@ -50,6 +61,12 @@ LoL Commits Server - by Clops
 
             {% set timestamp = commit.created %}
         {% endfor %}
+
+        <li class="timeline-inverted" id="infinite-loading">
+            <div class="timeline-image">
+                <img src="/assets/img/loading.png" alt="Loading" />
+            </div>
+        </li>
 
         {% if total < 1 %}
         <li class="timeline-inverted infinite-item">
