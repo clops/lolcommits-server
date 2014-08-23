@@ -322,13 +322,14 @@ header .intro-text .intro-heading {
 }
 
 section {
-    padding: 100px 0;
+    padding: 50px 0 100px;
 }
 
 section h2.section-heading {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 40px;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 section h3.section-subheading {
@@ -340,9 +341,13 @@ section h3.section-subheading {
     font-weight: 400;
 }
 
+section h3.section-subheading a{
+    color: #aaa;
+}
+
 @media(min-width:768px) {
     section {
-        padding: 150px 0;
+        padding: 50px 0 150px;
     }
 }
 
