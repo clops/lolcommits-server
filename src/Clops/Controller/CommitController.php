@@ -114,6 +114,7 @@
 		 */
 		private function error($message)
 		{
+			//I am not returning an error header on purpose, as lolcommits does not like it :(
 			return new JsonResponse(
 				array(
 					'status'  => 'error',
