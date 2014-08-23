@@ -50,11 +50,11 @@ LoL Commits Server - by Clops
                 </div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4>{{ commit.created }}</h4>
-                        <h4 class="subheading">{{ commit.repo }} / {{ commit.sha }}</h4>
+                        <h4>{{ commit.created|date("j F \\a\\t G:i") }}</h4>
                     </div>
                     <div class="timeline-body">
                         <p class="text-muted">{{ commit.message }}</p>
+                        <p>{{ commit.repo }} / {{ commit.sha }}</p>
                     </div>
                 </div>
             </li>
