@@ -9,10 +9,14 @@ A simple web backend/server for receiving and displaying lol-commits images on a
   * Provides a front-end interface to view the images in reverse chronological order (real fun begins when there are several people posting to the same server)
   * Supports lolcommit KEYs for authentication
   * Stores metadata in a local SQL database
+  * Timeline frontend with waypoint navigation
 
-## Stuff to Come ##
+## Live Demo ##
 
-  * Instagrmam-like frontend with waypoint navigation
+Here is my very own LoL Commits Server which I also use for a lot of testing.
+
+http://lol.clops.at/
+
 
 ## Installation ##
 
