@@ -84,13 +84,15 @@
 					->save($path . $pathToThumb);
 
 				//last but not least --> create database entry
-		        $app['db']->insert('commits', array(
-			        'sha'     => $sha, //this is the primary key, sending the same commit over WILL result in an exception :)
-			        'message' => $message,
-			        'image'   => $pathToFile,
-			        'thumb'   => $pathToThumb,
-			        'repo'    => $repository
-		        ));
+				if(!$record = $app['db']->getAssoc("SELECT * FROM commits WHERE sha = ?", array( 'sha' => (string)$sha ))){
+			        $app['db']->insert('commits', array(
+				        'sha'     => $sha, //this is the primary key, sending the same commit over WILL result in an exception :)
+				        'message' => $message,
+				        'image'   => $pathToFile,
+				        'thumb'   => $pathToThumb,
+				        'repo'    => $repository
+			        ));
+				}
 	        } catch (Exception $e) {
 				$this->error($e->getMessage());
 			}
